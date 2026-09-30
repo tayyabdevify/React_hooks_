@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Hooks Guide — Zero to Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+ <script>
+  (function () {
+    try {
+      const saved = localStorage.getItem("theme");
+      // Default = dark. Only go light if the user explicitly chose light.
+      if (saved === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (e) {
+      document.documentElement.classList.add("dark");
+    }
+  })();
+</script>
+  <body>
+    <body>
+  <div id="root">
+    <!-- Inline loader — visible until React takes over -->
+    <div id="boot-loader" style="
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: #0a0e1a;
+      color: #e2e8f0;
+      font-family: Inter, system-ui, sans-serif;
+    ">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+        <div style="
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          border: 3px solid rgba(255,255,255,0.08);
+          border-top-color: #06b6d4;
+          animation: spin 0.9s linear infinite;
+        "></div>
+        <div style="font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: #94a3b8;">
+          Loading…
+        </div>
+      </div>
+      <style>
+        @keyframes spin { to { transform: rotate(360deg); } }
+      </style>
+    </div>
+  </div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

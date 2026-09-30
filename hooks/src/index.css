@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Light theme (soft, not pure white) ---------- */
+:root {
+  --bg-page: #eef1f6;
+  --bg-panel: #f7f8fb;
+  --bg-elevated: #e4e8ef;
+  --bg-subtle: rgba(15, 23, 42, 0.06);
+  --bg-hover: rgba(15, 23, 42, 0.08);
+  --border-line: rgba(15, 23, 42, 0.12);
+  --border-strong: rgba(15, 23, 42, 0.20);
+  --text-strong: #0b1220;
+  --text-muted: #475569;
+  --text-dim: #7c8798;
+}
+
+/* ---------- Dark theme ---------- */
+.dark {
+  --bg-page: #0a0e1a;
+  --bg-panel: #0f1522;
+  --bg-elevated: #151c2c;
+  --bg-subtle: rgba(255, 255, 255, 0.05);
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --border-line: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --text-strong: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+}
+
+/* ---------- Expose tokens to Tailwind ---------- */
+@theme inline {
+  --color-page: var(--bg-page);
+  --color-panel: var(--bg-panel);
+  --color-elevated: var(--bg-elevated);
+  --color-subtle: var(--bg-subtle);
+  --color-hover: var(--bg-hover);
+  --color-line: var(--border-line);
+  --color-line-strong: var(--border-strong);
+  --color-strong: var(--text-strong);
+  --color-muted: var(--text-muted);
+  --color-dim: var(--text-dim);
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --animate-fade-in: fadeIn 0.4s ease-in-out;
+  --animate-slide-down: slideDown 0.2s ease-out;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-page text-strong font-sans antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  ::selection {
+    @apply bg-cyan-500/30 text-cyan-100;
+  }
+}
+
+@layer components {
+  .prose-hook h3 {
+    @apply text-lg font-semibold text-strong mt-8 mb-3;
+  }
+  .prose-hook p {
+    @apply text-muted leading-relaxed mb-4;
+  }
+  .prose-hook ul {
+    @apply list-disc pl-6 space-y-1 text-muted mb-4;
+  }
+  .prose-hook code {
+    @apply bg-elevated text-cyan-600 dark:text-cyan-300 px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+}
